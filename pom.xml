@@ -44,6 +44,8 @@
     <!-- the version of the BOM, defining all the dependency versions -->
     <fabric8.bom.version>1.1.0.CR5</fabric8.bom.version>
     <fabric.version>1.1.0.CR5</fabric.version>
+
+    <fabric8.upload.repo>http://localhost:8181/maven/upload</fabric8.upload.repo>
   </properties>
 
   <licenses>
