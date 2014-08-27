@@ -1,0 +1,37 @@
+################
+### MQBroker ###
+################
+
+fabric:create --wait-for-provisioning
+container-create-child root broker
+mq-create --kind StandAlone --assign-container broker broker-mq-gateway-example-profile
+wait-for-provisioning
+
+################
+### Profiles ###
+################
+
+# Config profile
+fabric:profile-create --parents feature-camel-jms --parents mq-broker-default base-profile
+fabric:profile-edit -r mvn:${project.groupId}/fuse-fabric-features/${project.version}/xml/features base-profile
+
+# Producer profile
+fabric:profile-create --parents base-profile producer-profile
+fabric:profile-edit --features producer-feature producer-profile
+
+# Consumer profiles
+fabric:profile-create --parents base-profile consumer-profile
+fabric:profile-edit --features consumer-feature consumer-profile
+
+
+##################
+### Containers ###
+##################
+
+# Producer container
+fabric:container-create-child --profile producer-profile root producer-container
+
+# Consumer containers
+fabric:container-create-child --profile consumer-profile root consumer-container
+
+shell:watch container-list
