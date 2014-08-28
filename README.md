@@ -10,4 +10,4 @@
 7. Use hawtio to see what's going on!  
 
 # Thanks to
-[James Rawlings fuse example] https://github.com/rawlingsj/fuse-fabric-mq-example
+* [James Rawlings fuse example] (https://github.com/rawlingsj/fuse-fabric-mq-example)
