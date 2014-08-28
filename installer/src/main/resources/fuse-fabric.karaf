@@ -8,6 +8,9 @@ container-create-child root broker
 mq-create --kind StandAlone --assign-container broker --profile example-mqgateway-broker broker
 wait-for-provisioning
 
+#Fix protocols in connectors property for the broker
+profile-edit --pid io.fabric8.mq.fabric.server-broker/connectors="stomp openwire amqp mqtt" example-mqgateway-broker
+
 ################
 ### Profiles ###
 ################
@@ -30,9 +33,9 @@ fabric:profile-edit --features consumer-feature example-mqgateway-consumer
 ##################
 
 # Producer container
-fabric:container-create-child --profile example-mqgateway-producer root producer-container
+fabric:container-create-child --profile example-mqgateway-producer root producer
 
 # Consumer containers
-fabric:container-create-child --profile example-mqgateway-consumer root consumer-container
+fabric:container-create-child --profile example-mqgateway-consumer root consumer
 
 shell:watch container-list
