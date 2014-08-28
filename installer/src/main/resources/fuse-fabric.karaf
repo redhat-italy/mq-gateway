@@ -12,8 +12,8 @@ wait-for-provisioning
 ################
 
 # Config profile
-fabric:profile-create --parents feature-camel-jms --parents mq-broker-default base-profile
-fabric:profile-edit -r mvn:${project.groupId}/fuse-fabric-features/${project.version}/xml/features base-profile
+fabric:profile-create --parents feature-camel-jms --parents mq-default base-profile
+fabric:profile-edit -r mvn:${project.groupId}/installer/${project.version}/xml/features base-profile
 
 # Producer profile
 fabric:profile-create --parents base-profile producer-profile
