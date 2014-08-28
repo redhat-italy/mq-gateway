@@ -16,7 +16,7 @@ profile-edit --pid io.fabric8.mq.fabric.server-broker/connectors="stomp openwire
 ################
 
 # Config profile
-fabric:profile-create --parents feature-camel-jms --parents mq-client example-mqgateway-base
+fabric:profile-create --parents feature-camel-jms example-mqgateway-base
 fabric:profile-edit -r mvn:${project.groupId}/installer/${project.version}/xml/features example-mqgateway-base
 
 # Producer profile
