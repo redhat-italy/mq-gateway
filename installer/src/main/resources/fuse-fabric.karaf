@@ -2,7 +2,7 @@
 ### MQBroker ###
 ################
 
-fabric:create --clean --wait-for-provisioning
+#fabric:create --clean --wait-for-provisioning
 #if you want to go offline, uncheck this line
 #fabric:profile-edit --pid io.fabric8.agent/org.ops4j.pax.url.mvn.repositories="file:\${runtime.home}/maven@snapshots@id=maven-offline" default
 fabric:profile-edit --pid org.fusesource.fabric.maven/checksumPolicy=warn  default
@@ -24,16 +24,16 @@ profile-edit --pid io.fabric8.mq.fabric.server-broker/connectors="stomp openwire
 ################
 
 # Config profile
-fabric:profile-create --parents feature-camel-jms example-mqgateway-base
-fabric:profile-edit -r mvn:${project.groupId}/installer/${project.version}/xml/features example-mqgateway-base
+#fabric:profile-create --parents feature-camel-jms example-mqgateway-base
+#fabric:profile-edit -r mvn:${project.groupId}/installer/${project.version}/xml/features example-mqgateway-base
 
 # Producer profile
-fabric:profile-create --parents example-mqgateway-base example-mqgateway-producer
-fabric:profile-edit --features producer-feature example-mqgateway-producer
+#fabric:profile-create --parents example-mqgateway-base example-mqgateway-producer
+#fabric:profile-edit --features producer-feature example-mqgateway-producer
 
 # Consumer profiles
-fabric:profile-create --parents example-mqgateway-base example-mqgateway-consumer
-fabric:profile-edit --features consumer-feature example-mqgateway-consumer
+#fabric:profile-create --parents example-mqgateway-base example-mqgateway-consumer
+#fabric:profile-edit --features consumer-feature example-mqgateway-consumer
 
 
 ##################
@@ -41,9 +41,9 @@ fabric:profile-edit --features consumer-feature example-mqgateway-consumer
 ##################
 
 # Producer container
-fabric:container-create-child --profile example-mqgateway-producer root producer
+#fabric:container-create-child --profile example-mqgateway-producer root producer
 
 # Consumer containers
-fabric:container-create-child --profile example-mqgateway-consumer root consumer
+#fabric:container-create-child --profile example-mqgateway-consumer root consumer
 
-# shell:watch container-list
+shell:watch container-list
