@@ -2,10 +2,15 @@
 ### MQBroker ###
 ################
 
-fabric:create --wait-for-provisioning
+fabric:create --clean --wait-for-provisioning
+fabric:profile-edit --pid io.fabric8.agent/org.ops4j.pax.url.mvn.repositories="file:\${runtime.home}/maven@snapshots@id=maven-offline" default
+fabric:profile-edit --pid org.fusesource.fabric.maven/checksumPolicy=warn  default
+fabric:profile-edit --pid org.ops4j.pax.url.mvn/checksumPolicy=warn  default
+wait-for-provisioning
 
-container-create-child root broker
-mq-create --kind StandAlone --assign-container broker --profile example-mqgateway-broker broker
+# container-create-child root broker
+# mq-create --kind StandAlone --assign-container broker --profile example-mqgateway-broker broker
+mq-create --kind StandAlone --create-container broker --profile example-mqgateway-broker broker
 wait-for-provisioning
 
 #Fix protocols in connectors property for the broker
@@ -38,4 +43,4 @@ fabric:container-create-child --profile example-mqgateway-producer root producer
 # Consumer containers
 fabric:container-create-child --profile example-mqgateway-consumer root consumer
 
-shell:watch container-list
+# shell:watch container-list
