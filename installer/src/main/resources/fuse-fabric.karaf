@@ -3,14 +3,17 @@
 ################
 
 fabric:create --clean --wait-for-provisioning
-fabric:profile-edit --pid io.fabric8.agent/org.ops4j.pax.url.mvn.repositories="file:\${runtime.home}/maven@snapshots@id=maven-offline" default
+#if you want to go offline, uncheck this line
+#fabric:profile-edit --pid io.fabric8.agent/org.ops4j.pax.url.mvn.repositories="file:\${runtime.home}/maven@snapshots@id=maven-offline" default
 fabric:profile-edit --pid org.fusesource.fabric.maven/checksumPolicy=warn  default
 fabric:profile-edit --pid org.ops4j.pax.url.mvn/checksumPolicy=warn  default
 wait-for-provisioning
 
 # container-create-child root broker
 # mq-create --kind StandAlone --assign-container broker --profile example-mqgateway-broker broker
-mq-create --kind StandAlone --create-container broker --profile example-mqgateway-broker broker
+mq-create --kind StandAlone --profile example-mqgateway-broker broker
+container-create-child --profile example-mqgateway-broker root broker
+container-create-child --profile mq-gateway gateway 
 wait-for-provisioning
 
 #Fix protocols in connectors property for the broker
