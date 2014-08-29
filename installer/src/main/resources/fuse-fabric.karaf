@@ -13,7 +13,7 @@ wait-for-provisioning
 # mq-create --kind StandAlone --assign-container broker --profile example-mqgateway-broker broker
 mq-create --kind StandAlone --profile example-mqgateway-broker broker
 container-create-child --profile example-mqgateway-broker root broker
-container-create-child --profile mq-gateway root gateway 
+container-create-child --profile gateway-mq root gateway 
 wait-for-provisioning
 
 #Fix protocols in connectors property for the broker
