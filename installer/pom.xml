@@ -59,11 +59,6 @@
             <configuration>
               <artifacts>
                 <artifact>
-                  <file>target/classes/fuse-fabric-features.xml</file>
-                  <type>xml</type>
-                  <classifier>features</classifier>
-                </artifact>
-                <artifact>
                   <file>target/classes/fuse-fabric.karaf</file>
                   <type>karaf</type>
                   <classifier>installer</classifier>
