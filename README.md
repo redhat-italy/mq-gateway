@@ -1,4 +1,16 @@
-# Getting started...
+# MQ Gateway example
+
+The Gateway provides a service for discovery, load balancing and failover of services running within a Fabric8. 
+For messaging clients with A-MQ using any protocol (OpenWire, STOMP, MQTT, AMQP or WebSockets) they can discover and connect to the right broker letting the gateway deal connection management and proxy requests to where the services are actually running.
+See more information on the official documnetation
+* [MQ Gateway documentation] (http://fabric8.io/gitbook/gateway.html)
+
+This simple example deploys a Standalone AMQ broker and a default MQ Gateway.
+The MQ Gateway listens on 61616 port and is able to detect protocol and proxy every request on the real services.
+To test the gateway you can use any Openwire, MQTT, STOMP or AMQP client and point it to 61616 port.
+In the example a STOMP ruby client is provided. 
+
+# Building the code and testing the Gateway
 
 1. Clone this repo  
 2. Build and install example into your local maven repo  
