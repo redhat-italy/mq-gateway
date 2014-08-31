@@ -1,49 +1,20 @@
-################
-### MQBroker ###
-################
+#This script creates needed profiles containers. Tested under Fabric8 1.1.0.CR5
 
-#fabric:create --clean --wait-for-provisioning
-#if you want to go offline, uncheck this line
-#fabric:profile-edit --pid io.fabric8.agent/org.ops4j.pax.url.mvn.repositories="file:\${runtime.home}/maven@snapshots@id=maven-offline" default
+#Create a fabric: in 1.1.0.CR5 Karaf will quit, so you'll have to reconnect with ./bin/client
+fabric:create --clean --wait-for-provisioning
 fabric:profile-edit --pid org.fusesource.fabric.maven/checksumPolicy=warn  default
 fabric:profile-edit --pid org.ops4j.pax.url.mvn/checksumPolicy=warn  default
 wait-for-provisioning
 
-# container-create-child root broker
-# mq-create --kind StandAlone --assign-container broker --profile example-mqgateway-broker broker
+#Create a default standalone broker
 mq-create --kind StandAlone --profile example-mqgateway-broker broker
 container-create-child --profile example-mqgateway-broker root broker
+
+#Fix protocols in connectors property for the broker: should be fixed in Fabric8 1.1.0 final
+profile-edit --pid io.fabric8.mq.fabric.server-broker/connectors="stomp openwire amqp mqtt" example-mqgateway-broker
+
+#Create a default MQ gateway
 container-create-child --profile gateway-mq root gateway 
 wait-for-provisioning
 
-#Fix protocols in connectors property for the broker
-profile-edit --pid io.fabric8.mq.fabric.server-broker/connectors="stomp openwire amqp mqtt" example-mqgateway-broker
-
-################
-### Profiles ###
-################
-
-# Config profile
-#fabric:profile-create --parents feature-camel-jms example-mqgateway-base
-#fabric:profile-edit -r mvn:${project.groupId}/installer/${project.version}/xml/features example-mqgateway-base
-
-# Producer profile
-#fabric:profile-create --parents example-mqgateway-base example-mqgateway-producer
-#fabric:profile-edit --features producer-feature example-mqgateway-producer
-
-# Consumer profiles
-#fabric:profile-create --parents example-mqgateway-base example-mqgateway-consumer
-#fabric:profile-edit --features consumer-feature example-mqgateway-consumer
-
-
-##################
-### Containers ###
-##################
-
-# Producer container
-#fabric:container-create-child --profile example-mqgateway-producer root producer
-
-# Consumer containers
-#fabric:container-create-child --profile example-mqgateway-consumer root consumer
-
-shell:watch container-list
+#shell:watch container-list

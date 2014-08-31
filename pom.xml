@@ -57,8 +57,6 @@
   </licenses>
 
   <modules>
-    <module>consumer</module>
-    <module>producer</module>
     <module>installer</module>
   </modules>
 
