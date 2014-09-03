@@ -28,6 +28,11 @@ In the example a STOMP ruby client is provided.
 `$ stompcat`
 10. type a message in the STOMP producer and observe the STOMP consumer. 
 11. Use hawt.io to observe the Gateway detecting the protocol and redirecting the traffic to the proper endpoint 
+12. If you want to test OpenWire too, go in the openwiretest directory. 
+    You may have to modify the AMQ_HOME variable to point to your installation, `export AMQ_HOME=/path/to/your/amq` 
+13. Run in two different terminals
+14. `$ consumer.sh`
+15. `$ producer.sh`
 
 # Thanks to
 * [James Rawlings fuse example] (https://github.com/rawlingsj/fuse-fabric-mq-example)
