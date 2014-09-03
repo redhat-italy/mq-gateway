@@ -1,7 +1,7 @@
 #This script creates needed profiles containers. Tested under Fabric8 1.1.0.CR5
 
 #Create a fabric: in 1.1.0.CR5 Karaf will quit, so you'll have to reconnect with ./bin/client
-fabric:create --clean --wait-for-provisioning
+fabric:create --clean --global-resolver localip --wait-for-provisioning --profile fabric
 fabric:profile-edit --pid org.fusesource.fabric.maven/checksumPolicy=warn  default
 fabric:profile-edit --pid org.ops4j.pax.url.mvn/checksumPolicy=warn  default
 wait-for-provisioning
