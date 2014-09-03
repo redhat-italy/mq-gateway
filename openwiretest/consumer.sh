@@ -1,3 +1,11 @@
 #!/bin/bash
-AMQ_HOME=/opt/jboss-a-mq-6.1.0.redhat-379/
-java -jar $AMQ_HOME/extras/mq-client.jar consumer --destination queue://testQueue --count 5000 --brokerUrl tcp://localhost:61616 --user admin --password admin  
+echo $OPENWIRE_PORT
+if [ -z $AMQ_HOME ] 
+then
+  AMQ_HOME=/opt/jboss-a-mq-6.1.0.redhat-379/
+fi
+if [ -z $OPENWIRE_PORT ] 
+then
+  OPENWIRE_PORT=61616
+fi  
+java -jar $AMQ_HOME/extras/mq-client.jar consumer --destination queue://testQueue --count 5000 --brokerUrl tcp://localhost:$OPENWIRE_PORT --user admin --password admin  
