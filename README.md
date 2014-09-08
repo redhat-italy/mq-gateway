@@ -8,7 +8,7 @@ See more information on the official documnetation
 This simple example deploys a Standalone AMQ broker and a default MQ Gateway.
 The MQ Gateway listens on 61616 port and is able to detect protocol and proxy every request on the real services.
 To test the gateway you can use any Openwire, MQTT, STOMP or AMQP client and point it to 61616 port.
-In the example a STOMP ruby client is provided. 
+In the example boh a STOMP ruby client and an OpenWire one are provided. 
 
 # Building the code and testing the Gateway
 
